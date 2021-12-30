@@ -10,8 +10,7 @@
   (use-package corgi-commands)
   (use-package corgi-clojure)
   (use-package corgi-emacs-lisp)
-  (use-package corgi-stateline)
-  )
+  (use-package corgi-stateline))
 
 (use-package magit)
 (use-package org
@@ -25,20 +24,17 @@
 (use-package dockerfile-mode)
 (use-package groovy-mode)
 (use-package buttercup)
+(use-package rainbow-mode)
 
-;; (straight-freeze-versions)
 (server-start)
-
-;; Support Home/End in terminals
-(global-set-key (kbd "M-[ 1 ~") 'beginning-of-line)
-(global-set-key (kbd "M-[ 4 ~") 'end-of-line)
-(global-set-key (kbd "<select>") 'end-of-line)
+(global-linum-mode 1)
 
 ;; use with ,,<letter>, e.g. `,,g' runs (user/go)
 (set-register ?k "#_clj (do (require 'kaocha.repl) (kaocha.repl/run))")
 (set-register ?K "#_clj (do (require 'kaocha.repl) (kaocha.repl/run-all))")
 (set-register ?r "#_clj (do (require 'user :reload) (user/reset))")
 (set-register ?g "#_clj (user/go)")
+(set-register ?b "#_clj (user/browse)")
 
 (use-package color-theme-sanityinc-tomorrow
   :config
@@ -49,3 +45,6 @@
             (when (derived-mode-p 'prog-mode)
               (delete-trailing-whitespace))))
 
+(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
+  (when (file-exists-p local-config)
+    (load-file local-config)))
