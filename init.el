@@ -8,7 +8,11 @@
     (corkey-mode 1)
     (corkey/install-bindings '(corgi-keys keys) '(corgi-signals signals)))
   (use-package corgi-commands)
-  (use-package corgi-clojure)
+  (use-package corgi-clojure
+    :config
+    (when (executable-find "bb")
+      (corgi/cider-jack-in-babashka))
+    (corgi/enable-cider-connection-indicator))
   (use-package corgi-emacs-lisp)
   (use-package corgi-stateline))
 
