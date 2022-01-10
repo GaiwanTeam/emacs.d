@@ -3,18 +3,22 @@
 (let ((straight-current-profile 'corgi))
   (use-package corgi-defaults)
   (use-package corgi-editor)
-  (use-package corkey
-    :config
-    (corkey-mode 1)
-    (corkey/install-bindings '(corgi-keys keys) '(corgi-signals signals)))
+
   (use-package corgi-commands)
   (use-package corgi-clojure
     :config
     (when (executable-find "bb")
       (corgi/cider-jack-in-babashka))
-    (corgi/enable-cider-connection-indicator))
+    (corgi/enable-cider-connection-indicator)
+    ;;(load-file "/home/arne/github/clojure-mode/clojure-mode.el")
+    )
   (use-package corgi-emacs-lisp)
-  (use-package corgi-stateline))
+  (use-package corgi-stateline)
+
+  (use-package corkey
+    :config
+    (corkey-mode 1)
+    (corkey/load-and-watch)))
 
 (use-package magit)
 (use-package org
@@ -29,9 +33,10 @@
 (use-package groovy-mode)
 (use-package buttercup)
 (use-package rainbow-mode)
+(use-package pkg-info)
 
 (server-start)
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 
 ;; use with ,,<letter>, e.g. `,,g' runs (user/go)
 (set-register ?k "#_clj (do (require 'kaocha.repl) (kaocha.repl/run))")
@@ -52,3 +57,9 @@
 (let ((local-config (expand-file-name "local.el" user-emacs-directory)))
   (when (file-exists-p local-config)
     (load-file local-config)))
+
+(with-current-buffer (get-buffer-create "*scratch-clj*")
+  (clojure-mode))
+
+(with-current-buffer (get-buffer-create "*scratch*")
+  (lisp-interaction-mode))
