@@ -44,6 +44,9 @@
 (set-register ?r "#_clj (do (require 'user :reload) (user/reset))")
 (set-register ?g "#_clj (user/go)")
 (set-register ?b "#_clj (user/browse)")
+(set-register ?c "#_clj ((requiring-resolve 'nextjournal.clerk/serve!) {})")
+(set-register ?, "#_clj (nextjournal.clerk/show! \"{{buffer-file-name}}\")")
+
 
 (use-package color-theme-sanityinc-tomorrow
   :config
@@ -63,3 +66,5 @@
 
 (with-current-buffer (get-buffer-create "*scratch*")
   (lisp-interaction-mode))
+
+(use-package html-to-hiccup)
