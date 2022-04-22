@@ -32,8 +32,8 @@
  ;; Bindings for commands are usually only active in normal and visual state.
  (normal|visual
   ("SPC"
-   ("g"
+   ("g" "Git"
     ("b" "Git blame" magit-blame))
-   ("o"
+   ("o" "Open"
     ("u" "Open URL at point" browse-url-at-point)
     ("s" "Edit string at point" string-edit-at-point)))))

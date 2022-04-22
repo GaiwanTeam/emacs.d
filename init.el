@@ -5,15 +5,10 @@
   (use-package corgi-editor)
 
   (use-package corgi-commands)
-  (use-package corgi-clojure
-    :config
-    (when (executable-find "bb")
-      (corgi/cider-jack-in-babashka))
-    (corgi/enable-cider-connection-indicator)
-    ;;(load-file "/home/arne/github/clojure-mode/clojure-mode.el")
-    )
+  (use-package corgi-clojure)
   (use-package corgi-emacs-lisp)
   (use-package corgi-stateline)
+  (use-package corgi-bindings)
 
   (use-package corkey
     :config
@@ -57,14 +52,22 @@
             (when (derived-mode-p 'prog-mode)
               (delete-trailing-whitespace))))
 
-(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
-  (when (file-exists-p local-config)
-    (load-file local-config)))
+;;(require 'corgi-clojure-cider-extras)
+;;(require 'corgi-cider-connection-indicator)
+
+(when (executable-find "bb")
+  (corgi/cider-jack-in-babashka))
+
+(corgi/enable-cider-connection-indicator)
 
 (with-current-buffer (get-buffer-create "*scratch-clj*")
   (clojure-mode))
 
 (with-current-buffer (get-buffer-create "*scratch*")
   (lisp-interaction-mode))
+
+(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
+  (when (file-exists-p local-config)
+    (load-file local-config)))
 
 (use-package html-to-hiccup)
