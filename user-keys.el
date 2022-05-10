@@ -29,6 +29,14 @@
   ("s-<XF86TouchpadToggle>" :project/open-file)
   )
 
+ (normal
+  (","
+   ("x" "Do normal thing" ignore)))
+
+ (visual
+  (","
+   ("x" "Do visual thing" ignore)))
+
  ;; Bindings for commands are usually only active in normal and visual state.
  (normal|visual
   ("SPC"

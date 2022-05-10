@@ -1,5 +1,8 @@
 (load-file (expand-file-name "bootstrap.el" user-emacs-directory))
 
+(setq warning-minimum-level :error)
+(setq warning-minimum-log-level :error)
+
 (let ((straight-current-profile 'corgi))
   (use-package corgi-defaults)
   (use-package corgi-editor)
@@ -41,6 +44,8 @@
 (set-register ?b "#_clj (user/browse)")
 (set-register ?c "#_clj ((requiring-resolve 'nextjournal.clerk/serve!) {})")
 (set-register ?, "#_clj (nextjournal.clerk/show! \"{{buffer-file-name}}\")")
+(set-register ?p "#_clj (user/portal)")
+(set-register ?P "#_cljs (user/portal)")
 
 
 (use-package color-theme-sanityinc-tomorrow
@@ -55,10 +60,19 @@
 ;;(require 'corgi-clojure-cider-extras)
 ;;(require 'corgi-cider-connection-indicator)
 
+(setq cider-connection-message-fn
+      nil )
+
+(setq recentf-max-saved-items 100)
+
 (when (executable-find "bb")
   (corgi/cider-jack-in-babashka))
-
+(run-at-time nil (* 5 60) 'recentf-save-list)
 (corgi/enable-cider-connection-indicator)
+
+cider-connected-hook
+
+(use-package visual-fill-column)
 
 (with-current-buffer (get-buffer-create "*scratch-clj*")
   (clojure-mode))
@@ -71,3 +85,11 @@
     (load-file local-config)))
 
 (use-package html-to-hiccup)
+
+(setq warning-minimum-level :warning)
+(setq warning-minimum-log-level :warning)
+
+(put-clojure-indent
+ 'reflect/extend-signatures '(1 :form (1)))
+(put-clojure-indent
+ 'sc.api/letsc '(1))

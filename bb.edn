@@ -1,2 +1,5 @@
 {:deps {lambdaisland/open-source {:git/url "https://github.com/lambdaisland/open-source"
-                                  :git/sha "835e8f001659ed07e5835a554b99828331a88e8d"}}}
+                                  :git/sha "835e8f001659ed07e5835a554b99828331a88e8d"}
+        itrev/playerpage {:local/root "/home/arne/ITRevolution/does/does-playerpage"}
+        lambdaisland/uri {:mvn/version "RELEASE"}}
+ }

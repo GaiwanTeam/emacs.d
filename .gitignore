@@ -11,3 +11,7 @@ straight/
 transient/
 games
 projectile.cache
+smex-items
+var
+eln-cache
+/session.*
