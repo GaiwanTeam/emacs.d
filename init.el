@@ -32,6 +32,7 @@
 (use-package buttercup)
 (use-package rainbow-mode)
 (use-package pkg-info)
+;;(use-package clj-refactor)
 
 (server-start)
 (global-display-line-numbers-mode 1)
@@ -50,7 +51,7 @@
 
 (use-package color-theme-sanityinc-tomorrow
   :config
-  (load-theme 'sanityinc-tomorrow-bright t))
+  (load-theme 'sanityinc-tomorrow-night t))
 
 (add-hook 'before-save-hook
           (lambda ()
@@ -89,7 +90,10 @@ cider-connected-hook
 (setq warning-minimum-level :warning)
 (setq warning-minimum-log-level :warning)
 
-(put-clojure-indent
- 'reflect/extend-signatures '(1 :form (1)))
-(put-clojure-indent
- 'sc.api/letsc '(1))
+(put-clojure-indent 'reflect/extend-signatures '(1 :form (1)))
+(put-clojure-indent 'sc.api/letsc '(1))
+
+;; (eval-after-load 'projectile
+;;   (setq projectile-project-root-files-bottom-up
+;;         (cons "deps.edn"
+;;               projectile-project-root-files-bottom-up)))
