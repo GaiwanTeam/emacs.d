@@ -81,9 +81,15 @@ cider-connected-hook
 (with-current-buffer (get-buffer-create "*scratch*")
   (lisp-interaction-mode))
 
-(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
-  (when (file-exists-p local-config)
-    (load-file local-config)))
+(mapcar
+ (lambda (file)
+   (let ((local-config (expand-file-name file user-emacs-directory)))
+     (when (file-exists-p local-config)
+       (load-file local-config))))
+ (list "local.el"
+       (concat "local." (user-login-name) ".el")
+       (concat "local." system-name ".el")
+       (concat "local." (user-login-name) "." system-name ".el")))
 
 (use-package html-to-hiccup)
 

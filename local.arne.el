@@ -92,3 +92,22 @@
       (lambda (lang body)
         (when (equal 'clojure lang)
           :allow)))
+
+(setq-default css-indent-offset 2)
+
+(setq cider-redirect-server-output-to-repl nil)
+
+;; (unless (treesit-ready-p 'javascript)
+;;   (if (yes-or-no-p "Tree-sitter grammar for JS not found. Install it now? ")
+;;       (treesit-install-language-grammar 'javascript)
+;;     (error "Tree-sitter for JS isn't available")))
+
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
+
+(add-hook 'js-ts-mode-hook
+          (lambda ()
+            (aggressive-indent-mode 1)))
+
+(defun css-region-to-garden (start end)
+  (interactive "r")
+  (replace-regexp "\\([a-z-]+\\): \\(.*\\);" ":\\1 \"\\2\"" nil start end))
