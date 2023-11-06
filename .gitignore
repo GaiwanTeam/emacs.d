@@ -15,3 +15,8 @@ smex-items
 var
 eln-cache
 /session.*
+/.cache
+/elpa
+/tree-sitter
+/tramp
+/projects
