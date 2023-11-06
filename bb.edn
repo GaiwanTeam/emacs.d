@@ -1,5 +1,6 @@
-{:deps {lambdaisland/open-source {:git/url "https://github.com/lambdaisland/open-source"
-                                  :git/sha "835e8f001659ed07e5835a554b99828331a88e8d"}
-        ;; itrev/playerpage {:local/root "/home/arne/ITRevolution/does/does-playerpage"}
-        lambdaisland/uri {:mvn/version "RELEASE"}}
- }
+{:deps {lambdaisland/open-source   {:git/url "https://github.com/lambdaisland/open-source"
+                                    :git/sha "7f39ffb76d47e2ff83d4478957c2ca4fd180f3e5"}
+        ;;itrev/playerpage {:local/root "/home/arne/ITRevolution/does/does-playerpage"}
+        lambdaisland/uri           {:mvn/version "RELEASE"}
+        com.lambdaisland/launchpad {:mvn/version "RELEASE"}
+        com.lambdaisland/dotenv    {:mvn/version "0.1.1"}}}
