@@ -3,6 +3,12 @@
 (setq warning-minimum-level :error)
 (setq warning-minimum-log-level :error)
 
+(defun gaiwan-filter-local (files)
+  (seq-filter
+   (lambda (file)
+     (file-exists-p (expand-file-name file user-emacs-directory)))
+   files))
+
 (let ((straight-current-profile 'corgi))
   (use-package corgi-defaults)
   (use-package corgi-editor)
@@ -16,7 +22,21 @@
   (use-package corkey
     :config
     (corkey-mode 1)
-    (corkey/load-and-watch)))
+    (corkey/load-and-watch
+     (list* 'corgi-keys
+            'user-keys
+            (gaiwan-filter-local
+             (list
+              (concat "user-keys." (user-login-name) ".el")
+              (concat "user-keys." system-name ".el")
+              (concat "user-keys." (user-login-name) "." system-name ".el"))))
+     (list* 'corgi-signals
+            'user-signals
+            (gaiwan-filter-local
+             (list
+              (concat "user-signals." (user-login-name) ".el")
+              (concat "user-signals." system-name ".el")
+              (concat "user-signals." (user-login-name) "." system-name ".el")))))))
 
 (use-package magit)
 (use-package org
