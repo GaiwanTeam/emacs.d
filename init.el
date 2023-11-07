@@ -23,20 +23,20 @@
     :config
     (corkey-mode 1)
     (corkey/load-and-watch
-     (list* 'corgi-keys
-            'user-keys
-            (gaiwan-filter-local
-             (list
-              (concat "user-keys." (user-login-name) ".el")
-              (concat "user-keys." system-name ".el")
-              (concat "user-keys." (user-login-name) "." system-name ".el"))))
-     (list* 'corgi-signals
-            'user-signals
-            (gaiwan-filter-local
-             (list
-              (concat "user-signals." (user-login-name) ".el")
-              (concat "user-signals." system-name ".el")
-              (concat "user-signals." (user-login-name) "." system-name ".el")))))))
+     (cons 'corgi-keys
+           (cons 'user-keys
+                 (gaiwan-filter-local
+                  (list
+                   (concat "user-keys." (user-login-name) ".el")
+                   (concat "user-keys." system-name ".el")
+                   (concat "user-keys." (user-login-name) "." system-name ".el")))))
+     (cons 'corgi-signals
+           (cons 'user-signals
+                 (gaiwan-filter-local
+                  (list
+                   (concat "user-signals." (user-login-name) ".el")
+                   (concat "user-signals." system-name ".el")
+                   (concat "user-signals." (user-login-name) "." system-name ".el"))))))))
 
 (use-package magit)
 (use-package org
