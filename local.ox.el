@@ -1,6 +1,9 @@
 ;; Allow Ctrl-u to scroll up a page like vim
 (setq evil-want-C-u-scroll t)
 
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
+
 ;; You will most likely need to adjust this font size for your system!
 (defvar ox/default-font-size 180)
 (defvar ox/default-variable-font-size 180)
