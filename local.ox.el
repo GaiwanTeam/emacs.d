@@ -1,6 +1,10 @@
 ;; Allow Ctrl-u to scroll up a page like vim
 (setq evil-want-C-u-scroll t)
 
+(defun ox/open-init-el ()
+  (interactive)
+  (find-file (expand-file-name "local.ox.el" user-emacs-directory)))
+
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
 
@@ -90,5 +94,7 @@
 
 (use-package emojify)
 (use-package gitmoji
-  :ensure nil
+  :straight nil
   :load-path "~/projects/emacs-gitmoji")
+
+(use-package default-text-scale)
