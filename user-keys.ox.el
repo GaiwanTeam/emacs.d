@@ -98,11 +98,9 @@
    ("r" "(w)rap"
     ("r" "round insert" ox/open-round-insert)
     ("w" "wrap" paredit-wrap-round)
-    ("rr" "wrap" ox/open-round-insert)
-    ("rw" "wrap" paredit-wrap-round)
-    ("r(" "wrap" paredit-wrap-round)
-    ("r[" "wrap square" paredit-wrap-square)
-    ("r{" "wrap curly" paredit-wrap-curly))
+    ("(" "wrap" paredit-wrap-round)
+    ("[" "wrap square" paredit-wrap-square)
+    ("{" "wrap curly" paredit-wrap-curly))
 
    ("t" "Toggle"
     ("t" "parens toggle" ox/toggle-parens))
