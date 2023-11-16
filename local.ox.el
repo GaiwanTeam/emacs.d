@@ -98,3 +98,7 @@
   :load-path "~/projects/emacs-gitmoji")
 
 (use-package default-text-scale)
+
+(use-package html-to-hiccup
+  :straight nil
+  :load-path "~/projects/html-to-hiccup")
