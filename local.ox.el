@@ -85,7 +85,16 @@
 ;; screencasts!
 (use-package command-log-mode)
 
-(use-package forge)
+(use-package forge
+  :after magit
+  :config
+  (transient-append-suffix 'forge-dispatch '(0)
+    ["Forge browse"
+     ("@" "browse" forge-browse)]
+    ["Edit"
+     ("e p" "post" forge-edit-post)
+     ("e a" "assignees" forge-edit-topic-assignees)
+     ("e r" "review requests" forge-edit-topic-review-requests)]))
 
 (use-package git-link
   :config
