@@ -111,3 +111,6 @@
 (use-package html-to-hiccup
   :straight nil
   :load-path "~/projects/html-to-hiccup")
+
+(load-file "./tailwind_cheatsheet.el")
+
