@@ -107,7 +107,7 @@
     ("t" "parens toggle" ox/toggle-parens))
 
    ("y" "Yank"
-    ("p" "Yank pop list" consult-yank-pop))
+    ("p" "Yank pop list" counsel-yank-pop))
 
    ("o" "Go to other window" other-window)
 
