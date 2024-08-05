@@ -1,3 +1,7 @@
+(use-package json)
+(use-package request)
+
+(message "local.ox.el loading...")
 ;; Allow Ctrl-u to scroll up a page like vim
 (setq evil-want-C-u-scroll t)
 
@@ -129,6 +133,30 @@
 (message "loading secrets...")
 (load-file (expand-file-name (concat user-emacs-directory "/secrets.el")))
 (message "secrets loaded")
+
+(defun send-discord-message-with-webhook (webhook-url message)
+  "Send a message to a Discord channel using a webhook URL."
+  (request webhook-url
+    :type "POST"
+    :data (json-encode `(("content" . ,message)))
+    :headers '(("Content-Type" . "application/json"))
+    :parser 'json-read
+    :sync t
+    :complete (cl-function
+               (lambda (&key response &allow-other-keys)
+                 (message "Done: %s" (request-response-status-code response))))))
+
+(defun ox-journal-discord-gaiwan ()
+  "Interactively send a message to a Discord channel using a webhook URL."
+  (interactive)
+  (let* ((message (read-string "Enter message: ")))
+    (send-discord-message-with-webhook discord-ox-journal-webhook-url message)))
+
+;; (use-package clockify
+;;   :ensure nil
+;;   :load-path "~/projects/emacs-clockify")
+
+;; Usage example: M-x send-discord-message
 
 
 (use-package ivy-rich
