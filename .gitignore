@@ -21,3 +21,4 @@ eln-cache
 /tramp
 /projects
 /forge-database.sqlite
+/secrets.el
