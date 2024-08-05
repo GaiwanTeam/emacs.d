@@ -281,3 +281,15 @@
     (evil-terminal-cursor-changer-activate)
     (setq evil-insert-state-cursor 'bar)
     ))
+(defun ox/counsel-rg-change-dir (arg)
+  (let ((current-prefix-arg '(4)))
+    (counsel-rg ivy-text nil "")))
+
+(eval-after-load 'counsel
+  (setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s || true"))
+
+(eval-after-load 'ivy
+  (ivy-add-actions
+   'counsel-rg
+   '(("r" ox/counsel-rg-change-dir "change root directory"))))
+
