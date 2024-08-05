@@ -67,7 +67,8 @@
     ("r" "last result" cider-inspect-last-result))
 
    ("c" "clojure"
-    ("a" "add arity" clojure-add-arity))
+    ("a" "add arity" clojure-add-arity)
+    ("c" "Recompile" recompile))
 
    ("f"
     ("f" "Projectile file" projectile-find-file)
