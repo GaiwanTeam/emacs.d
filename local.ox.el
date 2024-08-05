@@ -98,7 +98,12 @@
   :config
   (transient-append-suffix 'forge-dispatch '(0)
     ["Forge browse"
-     ("@" "browse" forge-browse)]
+     ("@" "browse" forge-browse)])
+  (transient-append-suffix 'forge-dispatch '(0)
+    ["PR"
+     ("p c" "pullreq checkout" forge-checkout-pullreq)]
+    )
+  (transient-append-suffix 'forge-dispatch '(0)
     ["Edit"
      ("e p" "post" forge-edit-post)
      ("e a" "assignees" forge-edit-topic-assignees)
