@@ -1,6 +1,13 @@
 ;; Allow Ctrl-u to scroll up a page like vim
 (setq evil-want-C-u-scroll t)
 
+(setq mac-right-command-modifier 'super)
+(setq mac-command-modifier 'super)
+;; Option or Alt is naturally 'Meta'
+(setq mac-option-modifier 'meta)
+;; Right Alt (option) can be used to enter symbols like em dashes '—' and euros '€' and stuff.
+(setq mac-right-option-modifier 'nil)
+
 (defun ox/open-init-el ()
   (interactive)
   (find-file (expand-file-name "local.ox.el" user-emacs-directory)))
