@@ -131,7 +131,11 @@
   :straight nil
   :load-path "~/projects/html-to-hiccup")
 
-(load-file "./tailwind_cheatsheet.el")
+(use-package ivy-rich
+  :config
+  (ivy-rich-mode 1)
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+
 (message "loading secrets...")
 (load-file (expand-file-name (concat user-emacs-directory "/secrets.el")))
 (message "secrets loaded")
