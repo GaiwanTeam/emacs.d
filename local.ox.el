@@ -12,6 +12,8 @@
 ;; Right Alt (option) can be used to enter symbols like em dashes '—' and euros '€' and stuff.
 (setq mac-right-option-modifier 'nil)
 
+(global-auto-revert-mode t)
+
 (defun ox/open-init-el ()
   (interactive)
   (find-file (expand-file-name "local.ox.el" user-emacs-directory)))
