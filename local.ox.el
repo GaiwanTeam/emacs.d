@@ -281,6 +281,16 @@
     (evil-terminal-cursor-changer-activate)
     (setq evil-insert-state-cursor 'bar)
     ))
+
+(setq-default c-default-style "linux")
+(setq-default c-basic-offset 4)
+
+(use-package company
+  :disabled t)
+
+(use-package cider
+  :ensure t)
+
 (defun ox/counsel-rg-change-dir (arg)
   (let ((current-prefix-arg '(4)))
     (counsel-rg ivy-text nil "")))
@@ -293,3 +303,11 @@
    'counsel-rg
    '(("r" ox/counsel-rg-change-dir "change root directory"))))
 
+(message "local.ox.el finished loading.")
+
+(message "loading tailwind cheatsheet...")
+(load-file (expand-file-name (concat user-emacs-directory "/tailwind_cheatsheet.el")))
+(message "tailwind cheatsheet loaded")
+
+(provide 'local.ox)
+;;; local.ox.el ends here
