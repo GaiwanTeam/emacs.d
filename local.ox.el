@@ -160,11 +160,109 @@
 
 ;; Usage example: M-x send-discord-message
 
+(setq create-lockfiles nil)
 
-(use-package ivy-rich
+(defun css-region-to-garden (start end)
+  (interactive "r")
+  (replace-regexp "\\([a-z-]+\\): \\(.*\\);" ":\\1 \"\\2\"" nil start end))
+
+(defun projectile-kill-all-repl-buffers ()
+  "Kill all repls in the current project"
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (when (or (string-match-p (concat "cider-repl projects/" (projectile-project-name) ":localhost") (buffer-name buffer)))
+      (kill-buffer buffer))))
+
+(use-package piglet-emacs)
+(use-package adoc-mode)
+
+(use-package just-mode)
+(use-package web-mode)
+(use-package dotenv-mode)
+
+(use-package git-timemachine)
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init 'git-timemachine))
+
+(use-package coverlay)
+(use-package origami)
+(use-package css-in-js-mode
+  :straight '(css-in-js-mode :type git :host github :repo "orzechowskid/tree-sitter-css-in-js"))
+
+(use-package corfu)
+
+(use-package tsx-mode
+  :straight '(tsx-mode :type git :host github :repo "orzechowskid/tsx-mode.el"))
+
+;; (evil-define-key '(normal visual insert operator)
+;;   global-map
+;;   (kbd "C-v") 'evil-paste-after
+;;   (kbd "C-V") 'evil-paste-before)
+
+;; (define-key input-decode-map (kbd "M-v") 'my-paste-from-clipboard)
+;; (defun my-paste-from-clipboard ()
+;;   "Paste from clipboard in Evil normal and insert modes."
+;;   (interactive)
+;;   (if (not (evil-insert-state-p))
+;;       (progn
+;;         (evil-normal-state)
+;;         (evil-paste-after))
+;;     (yank)))
+
+;; (use-package consult
+;;   :hook (completion-list-mode . consult-preview-at-point-mode))
+
+;; Define a function to paste text
+(defun my-paste ()
+  "Paste text."
+  (interactive)
+  (yank))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+;; (define-key input-decode-map (kbd "M-v") 'my-paste-from-clipboard)
+;; (defun my-paste-from-clipboard ()
+;;   "Paste from clipboard in Evil normal and insert modes."
+;;   (interactive)
+;;   (if (not (evil-insert-state-p))
+;;       (progn
+;;         (evil-normal-state)
+;;         (evil-paste-after))
+;;     (yank)))
+
+(use-package lsp-mode
+  :ensure t
+  :hook ((clojure-mode . lsp)
+         (clojurec-mode . lsp)
+         (clojurescript-mode . lsp))
+  :config
+  ;; add paths to your local installation of project mgmt tools, like lein
+  (setenv "PATH" (concat
+                  "/usr/local/bin" path-separator
+                  (getenv "PATH")))
+  (setq lsp-enable-indentation nil)
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
   :config
   (ivy-rich-mode 1)
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  (setq lsp-ui-doc-show-with-cursor t)
+  )
 
 ;; (add-hook 'evil-insert-state-entry-hook (lambda () (send-string-to-terminal "\033[5 q")))                                                                                    (add-hook 'evil-normal-state-entry-hook (lambda () (send-string-to-terminal "\033[0 q")))
 
