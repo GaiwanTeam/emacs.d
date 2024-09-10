@@ -285,8 +285,8 @@
 (setq-default c-default-style "linux")
 (setq-default c-basic-offset 4)
 
-(use-package company
-  :disabled t)
+;; (use-package company
+;;   :disabled t)
 
 (use-package cider
   :ensure t)
@@ -295,13 +295,22 @@
   (let ((current-prefix-arg '(4)))
     (counsel-rg ivy-text nil "")))
 
-(eval-after-load 'counsel
+(with-eval-after-load 'counsel
   (setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s || true"))
 
-(eval-after-load 'ivy
-  (ivy-add-actions
-   'counsel-rg
-   '(("r" ox/counsel-rg-change-dir "change root directory"))))
+(with-eval-after-load 'ivy
+  (with-eval-after-load 'counsel
+    (ivy-add-actions
+     'counsel-rg
+     '(("r" ox/counsel-rg-change-dir "change root directory")))))
+
+(use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+  :ensure t
+  :config
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+;; you can utilize :map :hook and :config to customize copilot
 
 (message "local.ox.el finished loading.")
 
