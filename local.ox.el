@@ -289,7 +289,9 @@
 ;;   :disabled t)
 
 (use-package cider
-  :ensure t)
+  :ensure t
+  :init
+  (setq cider-clojure-cli-global-options ""))
 
 (defun ox/counsel-rg-change-dir (arg)
   (let ((current-prefix-arg '(4)))
