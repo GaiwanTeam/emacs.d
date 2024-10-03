@@ -46,6 +46,15 @@
    )
 
   ("<backspace>" "Switch to previous buffer" corgi/switch-to-previous-buffer)
+
+  ;; ("s" "Jump" avy-goto-char-2)
+
+  ("g" "Goto lsp"
+   ("d" "Find definition" lsp-find-definition)
+   ("r" "Find ref" lsp-find-references)
+   ("D" "Find UI definition" lsp-ui-peek-find-definitions)
+   ("R" "Find ref" lsp-ui-peek-find-references))
+
   ("z" "zzzzz"
    ;; ("z" "Fold toggle" evil-toggle-fold)
    )
@@ -79,6 +88,7 @@
 
    ("g" "Git"
     ("s" "Magit Status" magit-status)
+    ("." "Magit file dispatch" magit-file-dispatch)
     ("r" "Git repo home" git-link-homepage)
     ("l" "Git repo link" git-link)
     ("g" "Git status" magit-status)
