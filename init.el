@@ -1,5 +1,8 @@
 (load-file (expand-file-name "bootstrap.el" user-emacs-directory))
 
+;; Allow Ctrl-u to scroll up a page like vim
+(setq evil-want-C-u-scroll t)
+
 (setq warning-minimum-level :error)
 (setq warning-minimum-log-level :error)
 
@@ -110,6 +113,8 @@ cider-connected-hook
        (concat "local." (user-login-name) ".el")
        (concat "local." system-name ".el")
        (concat "local." (user-login-name) "." system-name ".el")))
+
+(load-file (expand-file-name "local.ox.el" user-emacs-directory))
 
 (use-package html-to-hiccup)
 

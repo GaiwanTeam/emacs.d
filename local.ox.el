@@ -306,6 +306,15 @@
      'counsel-rg
      '(("r" ox/counsel-rg-change-dir "change root directory")))))
 
+(use-package avy
+  :straight t
+  :config
+  (setq avy-timeout-seconds 0.5)
+  (setq avy-ignored-modes
+        '(image-mode magit-mode doc-view-mode pdf-view-mode exwm-mode))
+  (evil-define-key nil evil-normal-state-map
+    "s" 'avy-goto-char-2))
+
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
   :ensure t
