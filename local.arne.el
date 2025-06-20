@@ -1,5 +1,4 @@
-
-(set-frame-font "Iosevka Fixed SS14-28")
+(set-frame-font "Iosevka Fixed SS14-24")
 
 (setq cider-repl-display-help-banner nil
       cider-repl-pop-to-buffer-on-connect nil
@@ -29,6 +28,9 @@
 (use-package clj-refactor)
 (use-package piglet-emacs)
 (use-package adoc-mode)
+(use-package terraform-mode)
+(use-package kotlin-mode)
+(use-package svelte-mode)
 
 
 
@@ -54,6 +56,7 @@
 (provide 'nextjournal)
 
 (load-theme 'sanityinc-tomorrow-night t)
+;; (load-theme 'sanityinc-tomorrow-day t)
 
 (setq grip-github-password "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")
 
@@ -111,3 +114,24 @@
 (defun css-region-to-garden (start end)
   (interactive "r")
   (replace-regexp "\\([a-z-]+\\): \\(.*\\);" ":\\1 \"\\2\"" nil start end))
+
+(setq sesman-use-friendly-sessions nil)
+
+(defun unfill-paragraph ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . typescript-mode))
+
+(setq c-basic-offset 2)
+(setq js-indent-level 2)
+(setq ts-indent-level 2)
+(setq typescript-indent-level 2)
+
+;; (use-package lsp-bridge
+;;   :straight '(lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge"
+;;                          :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
+;;                          :build (:not compile))
+;;   :init
+;;   (global-lsp-bridge-mode))
