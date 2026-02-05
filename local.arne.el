@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (set-frame-font "Iosevka Fixed SS14-24")
 
 (setq cider-repl-display-help-banner nil
@@ -31,8 +33,10 @@
 (use-package terraform-mode)
 (use-package kotlin-mode)
 (use-package svelte-mode)
+(use-package sly)
+;; (use-package systemd-mode)
 
-
+(setq inferior-lisp-program "sbcl")
 
 ;; (use-package lsp-mode
 ;;   :config
@@ -135,3 +139,13 @@
 ;;                          :build (:not compile))
 ;;   :init
 ;;   (global-lsp-bridge-mode))
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (setq-default)
+            (setq tab-width 2)
+            (setq standard-indent 2)))
+
+(add-to-list 'auto-mode-alist '("\\.network\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.container\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.pod\\'" . conf-mode))

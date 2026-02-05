@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (load-file (expand-file-name "bootstrap.el" user-emacs-directory))
 
 (setq warning-minimum-level :error)
@@ -18,6 +20,7 @@
   (use-package corgi-emacs-lisp)
   (use-package corgi-stateline)
   (use-package corgi-bindings)
+  (use-package corgi-completion-ui)
 
   (use-package corkey
     :config
@@ -67,7 +70,7 @@
 (set-register ?, "#_clj (nextjournal.clerk/show! \"{{buffer-file-name}}\")")
 (set-register ?p "#_clj (user/portal)")
 (set-register ?P "#_cljs (user/portal)")
-
+(set-register ?m "(set! *print-namespace-maps* nil)")
 
 (use-package color-theme-sanityinc-tomorrow
   :config
@@ -88,6 +91,7 @@
 
 (when (executable-find "bb")
   (corgi/cider-jack-in-babashka))
+(require 'recentf)
 (run-at-time nil (* 5 60) 'recentf-save-list)
 (corgi/enable-cider-connection-indicator)
 
@@ -119,7 +123,4 @@ cider-connected-hook
 (put-clojure-indent 'reflect/extend-signatures '(1 :form (1)))
 (put-clojure-indent 'sc.api/letsc '(1))
 
-;; (eval-after-load 'projectile
-;;   (setq projectile-project-root-files-bottom-up
-;;         (cons "deps.edn"
-;;               projectile-project-root-files-bottom-up)))
+(put 'downcase-region 'disabled nil)

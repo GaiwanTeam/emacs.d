@@ -30,8 +30,9 @@
   )
 
  (normal
-  ;; (","
-  ;;  ("x" "Do normal thing" ignore))
+  (","
+   ("x"
+    ("x" "tailwind-cheatsheet" tailwind-cheatsheet)))
   )
 
  (visual
